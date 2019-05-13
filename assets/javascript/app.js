@@ -1,10 +1,7 @@
 $(document).ready(function() {
 
     $(".startBtn").on("click", function(e) {
-        var value = parseInt(e.target.value);
-        console.log(value)
-        userTotal += value;
-        $("#total-counter").html(userTotal);
+        $("#quiz").html(generateQuiz(questions, quizContainer, resultsContainer, submitButton));
 
 // Countdown clock
 var number = 60;
@@ -30,22 +27,24 @@ function run() {
 // Quiz
 var myQuestions = [
 	{
-		question: "What is 10/2?",
+		question: "Who launched Sun Records in February of 1952?",
 		answers: {
-			a: '3',
-			b: '5',
-			c: '115'
+			a: 'Scott Robinson',
+			b: 'Sam Phillips',
+            c: 'Emile Berliner',
+            d: 'Johnny Mercer',
 		},
 		correctAnswer: 'b'
 	},
 	{
-		question: "What is 30/3?",
+		question: "How did Sun Records get its moniker?",
 		answers: {
-			a: '3',
-			b: '5',
-			c: '10'
+			a: 'The founder is perpetually optimistic',
+			b: 'It’s mostly sunny in Memphis',
+            c: 'The found really likes astronomy but wanted to stay simple',
+            d: 'It’s a simple name for simply great music'
 		},
-		correctAnswer: 'c'
+		correctAnswer: 'a'
 	}
 ];
 var quizContainer;

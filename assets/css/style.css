@@ -1,12 +1,41 @@
-.container2 {
+.container {
+    width: 880px;
+    padding: 15px;
+    margin: 30px 200px 100px 200px;
+    background-color: #f3efe3;
+    overflow: auto;
+    box-shadow: 15px 15px 5px #3b3306;
+}
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    
     text-align: center;
-    border-bottom: 2px solid #cccccc;
     margin: 0 auto;
-    height: 300px;
+    padding: 10px;
+    font-size: 60px;
+    color: #e6c409;
+    text-shadow: 2px 2px #70490f;
+    vertical-align: 50%;
+}
+h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 3px solid #dddddd;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 40px;
+    color: #3b3306;
+    text-shadow: 1px 1px #70490f;
+    vertical-align: 50%;
 }
 
+p {
+    text-align: center;
+}
 body {
-    background-image: url("/../assets/images/Sun_logo.png");
+    background-image: url("../images/Sun_logo.png");
+    background-size: auto;
+    margin: auto;
     font-size: 20px;
 	font-family: sans-serif;
 	color: #333;
@@ -21,30 +50,37 @@ body {
 #submit {
 	font-family: sans-serif;
 	font-size: 20px;
-	background-color: #297;
+	background-color: #e6c409;
 	color: #fff;
 	border: 0px;
 	border-radius: 3px;
 	padding: 20px;
 	cursor: pointer;
-	margin-bottom: 20px;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    left: 350px;
 }
+
 #submit:hover{
-	background-color: #3a8;
+	background-color: rgb(241, 224, 124);
 }
 
 .startBtn {
     font-family: sans-serif;
 	font-size: 20px;
-	background-color: #297;
+	background-color: #e6c409;
 	color: #fff;
 	border: 0px;
 	border-radius: 3px;
 	padding: 20px;
 	cursor: pointer;
-	margin-bottom: 20px;
+	text-align: center;
+    display: inline-block;
+    position: relative;
+    left: 376px;
 }
 
 .startBtn:hover{
-	background-color: #3a8;
+	background-color: rgb(241, 224, 124);
 }
