@@ -2,31 +2,39 @@ $(document).ready(function() {
 
     $(".startBtn").on("click", function(e) {
         $("#quiz").html(generateQuiz(questions, quizContainer, resultsContainer, submitButton));
-
-    // Countdown clock
-        var number = 60;
-        var intervalId;
-        function run() {
-            clearInterval(intervalId);
-            intervalId = setInterval(decrement, 1000);
-        }
-        function decrement() {
-            number--;
-            $("#show-number").html("<h2>" + number + "</h2>");
-        if (number === 0) {
-            stop();
-            alert("Time's Up!")
-            }
-        }
-        function stop() {
-            clearInterval(intervalId);
-        }
-        run();
     });
+    // Countdown clock
+    //     var number = 60;
+    //     var intervalId;
+    //     function run() {
+    //         clearInterval(intervalId);
+    //         intervalId = setInterval(decrement, 1000);
+    //     }
+    //     function decrement() {
+    //         number--;
+    //         $("#show-number").html("<h2>" + number + "</h2>");
+    //     if (number === 0) {
+    //         stop();
+    //         alert("Time's Up!")
+    //         }
+    //     }
+    //     function stop() {
+    //         clearInterval(intervalId);
+    //     }
+    //     run();
+    // });
 
 // Quiz
     // Set up the Questions array
     var myQuestions = [
+    {
+        question: "You have 60 seconds to answer questions about the history of Sun Records. Are you ready?",
+        answers: {
+                a: 'Yeah, Man!',
+                b: 'I am too scared',
+            },
+            correctAnswer: 'a'
+        },
 	{
 		question: "Who launched Sun Records in February of 1952?",
 		answers: {
@@ -163,7 +171,8 @@ $(document).ready(function() {
             $('#previous').get[0];
         var nextButton = $('#next').get(0);
             $('#next').get[0];
-        var slides = $('.slide');
+        var slides = document.querySelectorAll(".slide");
+        // var slides = $('.slide');
         var currentSlide = 0;
 
     function showSlide(n) {
@@ -248,13 +257,3 @@ var submitButton = document.getElementById('submit');
 generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
 
 });
-
-// On load, the person will see the title of the Trivia Game and a Start button to click
-// On click, the game starts with a 60 second countdown clock at the top
-    // need a click even that will take the player to the quiz page, which looks different from the start page.
-// There will be multiple choice questions to answer within the 60 seconds counting down.
-    // Player will be able to click which option they want for each question and have a DONE button at the end
-// One more page shows an All Done with the correctly and incorrectly answered questions and unanswered.
-    // Users answers will be kept track of and on clicks
-
-    // setTimeout(oneMinute, 1000 * 60);
