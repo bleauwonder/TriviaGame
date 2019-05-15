@@ -1,8 +1,9 @@
-$(document).ready(function() {
 
-    $(".startBtn").on("click", function(e) {
+$(document).ready(function() {
+console.log("jquery");
+    $(".start").click(function() {
         $("#quiz").html(generateQuiz(questions, quizContainer, resultsContainer, submitButton));
-    });
+    
     // Countdown clock
     //     var number = 60;
     //     var intervalId;
@@ -27,14 +28,6 @@ $(document).ready(function() {
 // Quiz
     // Set up the Questions array
     var myQuestions = [
-    {
-        question: "You have 60 seconds to answer questions about the history of Sun Records. Are you ready?",
-        answers: {
-                a: 'Yeah, Man!',
-                b: 'I am too scared',
-            },
-            correctAnswer: 'a'
-        },
 	{
 		question: "Who launched Sun Records in February of 1952?",
 		answers: {
@@ -165,6 +158,7 @@ $(document).ready(function() {
             }
         // output list into one string
         quizContainer.innerHTML = output.join('');
+        return myQuestions;
     }
 
         var previousButton = $('#previous').get(0);
@@ -249,11 +243,13 @@ $(document).ready(function() {
 		showResults(questions, quizContainer, resultsContainer);
 	}
 }
-
-var quizContainer = document.getElementById('quiz');
-var resultsContainer = document.getElementById('results');
-var submitButton = document.getElementById('submit');
+var quizContainer = document.getElementById('#quiz');
+var resultsContainer = document.getElementById('#results');
+var submitButton = document.getElementById('#submit');
 
 generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+    });
+
+
 
 });
