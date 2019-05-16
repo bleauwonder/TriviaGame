@@ -1,33 +1,4 @@
-
-$(document).ready(function() {
-console.log("jquery");
-    $(".start").click(function() {
-        $("#quiz").html(generateQuiz(questions, quizContainer, resultsContainer, submitButton));
-    
-    // Countdown clock
-    //     var number = 60;
-    //     var intervalId;
-    //     function run() {
-    //         clearInterval(intervalId);
-    //         intervalId = setInterval(decrement, 1000);
-    //     }
-    //     function decrement() {
-    //         number--;
-    //         $("#show-number").html("<h2>" + number + "</h2>");
-    //     if (number === 0) {
-    //         stop();
-    //         alert("Time's Up!")
-    //         }
-    //     }
-    //     function stop() {
-    //         clearInterval(intervalId);
-    //     }
-    //     run();
-    // });
-
-// Quiz
-    // Set up the Questions array
-    var myQuestions = [
+var myQuestions = [
 	{
 		question: "Who launched Sun Records in February of 1952?",
 		answers: {
@@ -130,6 +101,34 @@ console.log("jquery");
 		correctAnswer: 'c'
 	}
 ];
+// $(document).ready(function() {
+    $(".start").click(function() {
+        $("#quiz").html(generateQuiz(questions, quizContainer, resultsContainer, submitButton));
+    
+    // Countdown clock
+    //     var number = 60;
+    //     var intervalId;
+    //     function run() {
+    //         clearInterval(intervalId);
+    //         intervalId = setInterval(decrement, 1000);
+    //     }
+    //     function decrement() {
+    //         number--;
+    //         $("#show-number").html("<h2>" + number + "</h2>");
+    //     if (number === 0) {
+    //         stop();
+    //         alert("Time's Up!")
+    //         }
+    //     }
+    //     function stop() {
+    //         clearInterval(intervalId);
+    //     }
+    //     run();
+    // });
+
+// Quiz
+    // Set up the Questions array
+
 
     // Function to generate the quiz on the page
     function generateQuiz(questions, quizContainer, resultsContainer, submitButton) {
@@ -223,17 +222,17 @@ console.log("jquery");
 			
 			// color the answers green
 			answerContainers[i].style.color = 'lightgreen';
-		}
+		    }
 		// if answer is wrong or blank
 		else{
 			// color the answers red
 			answerContainers[i].style.color = 'red';
-		}
-	}
+		    }
+	    }
 
 	// show number of correct answers out of total
 	resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
-}
+    }
 
 	// show the questions
 	showQuestions(questions, quizContainer);
@@ -241,15 +240,14 @@ console.log("jquery");
 	// when user clicks submit, show results
 	submitButton.onclick = function(){
 		showResults(questions, quizContainer, resultsContainer);
-	}
-}
-var quizContainer = document.getElementById('#quiz');
-var resultsContainer = document.getElementById('#results');
-var submitButton = document.getElementById('#submit');
+	    }
+    }
 
-generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+    var quizContainer = document.getElementById('#quiz');
+    var resultsContainer = document.getElementById('#results');
+    var submitButton = document.getElementById('#submit');
+
+    generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
     });
 
-
-
-});
+// });
