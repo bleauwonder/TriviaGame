@@ -102,71 +102,65 @@ var myQuestions = [
 	}
 ];
 // $(document).ready(function() {
-    $(".start").click(function() {
-        $("#quiz").html(generateQuiz(questions, quizContainer, resultsContainer, submitButton));
-    
-    // Countdown clock
-    //     var number = 60;
-    //     var intervalId;
-    //     function run() {
-    //         clearInterval(intervalId);
-    //         intervalId = setInterval(decrement, 1000);
-    //     }
-    //     function decrement() {
-    //         number--;
-    //         $("#show-number").html("<h2>" + number + "</h2>");
-    //     if (number === 0) {
-    //         stop();
-    //         alert("Time's Up!")
-    //         }
-    //     }
-    //     function stop() {
-    //         clearInterval(intervalId);
-    //     }
-    //     run();
-    // });
 
 // Quiz
-    // Set up the Questions array
 
-
-    // Function to generate the quiz on the page
-    function generateQuiz(questions, quizContainer, resultsContainer, submitButton) {
-
-	    function showQuestions(questions, quizContainer) {
-        // blank array to push user answers into, and an correct answers array
-            var output = [];
-            var answers;
-            for(var i=0; i<questions.length; i++) {
-                answers = [];
-                // for each available answer to this question
-                for(letter in questions[i].answers) {
-                    // add an html radio button
-                    answers.push('<label>'
-                        + '<input type="radio" name="question'+i+'" value="'+letter+'">'
-                        + letter + ': '
-                        + questions[i].answers[letter] + '</label>'
-                    );
-                }
-                // add this question and its answers to the output
-                    output.push(`<div class="slide">
-                        <div class="question"> ${questions[i].question} </div>
-                        <div class="answers"> ${answers.join("")} </div>
-                        </div>`
-                    );
-            }
-        // output list into one string
-        quizContainer.innerHTML = output.join('');
-        return myQuestions;
+    function buildQuiz() {
+        // blank array to push user answers into, and a correct answers array
+        var output = [];
+        // for each question, we'll want to store the list of answer choices
+        myQuestions.forEach((currentQuestion, questionNumber) => {
+            var answers = [];
+        // for each available answer to this question
+        for(letter in currentQuestion.answers) {
+            // add an html radio button
+            answers.push(`<label>
+            <input type="radio" name="question${questionNumber}" value="${letter}">
+             ${letter} :
+             ${currentQuestion.answers[letter]}
+            </label>`
+            );
+        }
+        output.push(`<div class="slide">
+                    <div class="question"> ${currentQuestion.question} </div>
+                    <div class="answers"> ${answers.join("")} </div>
+                    </div>`
+                );
+        });
+        
+        quizContainer.innerHTML = output.join("");
+           
     }
+      
+    function showResults(){
+        // gather answer containers from our quiz
+            var answerContainers = quizContainer.querySelectorAll('.answers');
+            // keep track of user's answers
+            var numCorrect = 0;
+            // for each question...
+            myQuestions.forEach((currentQuestion, questionNumber) => {
+                // find selected answer
+                var answerContainer = answerContainers[questionNumber];
+                var selector = `input[name=question${questionNumber}]:checked`;
+                var userAnswer = (answerContainer.querySelector(selector) || {}).value;
 
-        var previousButton = $('#previous').get(0);
-            $('#previous').get[0];
-        var nextButton = $('#next').get(0);
-            $('#next').get[0];
-        var slides = document.querySelectorAll(".slide");
-        // var slides = $('.slide');
-        var currentSlide = 0;
+                // if answer is correct
+                if (userAnswer === currentQuestion.correctAnswer) {
+                    // add to the number of correct answers
+                    numCorrect++;
+                    // color the answers green
+                    answerContainers[questionNumber].style.color = 'lightgreen';
+                    }
+                // if answer is wrong or blank
+                else {
+                    // color the answers red
+                    answerContainers[questionNumber].style.color = 'red';
+                    }
+                });
+                
+        // show number of correct answers out of total
+            resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+    }
 
     function showSlide(n) {
         $(slides[currentSlide]).removeClass('active-slide');
@@ -187,7 +181,6 @@ var myQuestions = [
             submitButton.style.display = 'none';
         }
     }
-    showSlide(0);
 
     function showNextSlide() {
         showSlide(currentSlide + 1);
@@ -197,57 +190,63 @@ var myQuestions = [
         showSlide(currentSlide - 1);
     }
 
+    const quizContainer = document.getElementById("quiz");
+    const resultsContainer = document.getElementById("results");
+    submitButton = document.getElementById("submit");
+
+    buildQuiz();
+
+    var previousButton = $('#previous').get(0);
+    $('#previous').get[0];
+    var nextButton = $('#next').get(0);
+    $('#next').get[0];
+    var slides = document.querySelectorAll(".slide");
+    // var slides = $('.slide');
+    var currentSlide = 0;
+
+
+    submitButton.addEventListener("click", showResults);
     previousButton.addEventListener("click", showPreviousSlide);
     nextButton.addEventListener("click", showNextSlide);
 
-    showQuestions(questions, quizContainer);
-
-	function showResults(questions, quizContainer, resultsContainer){
-	// gather answer containers from our quiz
-	var answerContainers = quizContainer.querySelectorAll('.answers');
-	// keep track of user's answers
-	var userAnswer = '';
-	var numCorrect = 0;
-	
-	// for each question...
-	for(var i=0; i<questions.length; i++){
-
-		// find selected answer
-		userAnswer = (answerContainers[i].querySelector('input[name=question'+i+']:checked')||{}).value;
-		
-		// if answer is correct
-		if(userAnswer===questions[i].correctAnswer){
-			// add to the number of correct answers
-			numCorrect++;
-			
-			// color the answers green
-			answerContainers[i].style.color = 'lightgreen';
-		    }
-		// if answer is wrong or blank
-		else{
-			// color the answers red
-			answerContainers[i].style.color = 'red';
-		    }
-	    }
-
-	// show number of correct answers out of total
-	resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
-    }
-
-	// show the questions
-	showQuestions(questions, quizContainer);
-
-	// when user clicks submit, show results
-	submitButton.onclick = function(){
-		showResults(questions, quizContainer, resultsContainer);
-	    }
-    }
-
-    var quizContainer = document.getElementById('#quiz');
-    var resultsContainer = document.getElementById('#results');
-    var submitButton = document.getElementById('#submit');
-
-    generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+    $(".startBtn").click(function() {
+        
+        showSlide(0);
+        
+        // Countdown clock
+        //     var number = 60;
+        //     var intervalId;
+        //     function run() {
+        //         clearInterval(intervalId);
+        //         intervalId = setInterval(decrement, 1000);
+        //     }
+        //     function decrement() {
+        //         number--;
+        //         $("#show-number").html("<h2>" + number + "</h2>");
+        //     if (number === 0) {
+        //         stop();
+        //         alert("Time's Up!")
+        //         }
+        //     }
+        //     function stop() {
+        //         clearInterval(intervalId);
+        //     }
+        //     run();
+        // });
     });
+   
+
+
+
+    // when user clicks submit, show results
+    submitButton.onclick = function(){
+    showResults(questions, quizContainer, resultsContainer);
+    }
+    
+
+   
+
+    
+
 
 // });
