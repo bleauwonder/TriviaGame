@@ -105,6 +105,7 @@ var myQuestions = [
     $('#previous').hide();
     $('#next').hide();
     $('#submit').hide();
+    var counter = 0;
     
 // Quiz
     function buildQuiz() {
@@ -134,6 +135,7 @@ var myQuestions = [
       
     function showResults() {
         // gather answer containers from our quiz
+        console.log("hi");
             var answerContainers = quizContainer.querySelectorAll('.answers');
             // keep track of user's answers
             var numCorrect = 0;
@@ -143,7 +145,7 @@ var myQuestions = [
                 var answerContainer = answerContainers[questionNumber];
                 var selector = `input[name=question${questionNumber}]:checked`;
                 var userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
+// look over querySelector, no answer?
                 // if answer is correct
                 if (userAnswer === currentQuestion.correctAnswer) {
                     // add to the number of correct answers
@@ -158,7 +160,8 @@ var myQuestions = [
                     }
                 }); 
         // show number of correct answers out of total
-            resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
+            resultsContainer.innerHTML = 'Wow...you got ' + numCorrect + ' out of ' + myQuestions.length + '!';
+            $('#counter').html('You finished in ' + counter + " seconds.");
     }
 
     function showSlide(n) {
@@ -212,39 +215,71 @@ var myQuestions = [
     previousButton.addEventListener("click", showPreviousSlide);
     submitButton.addEventListener("click", showResults);
 
+    var interval;
+    var intervalTime;
+    
+
+    function startTimer() {
+         clearInterval(interval);
+        interval= setInterval(gameOver, 6000);
+        clearInterval(intervalTime);
+        intervalTime = setInterval(increment, 1000);
+    }
+    function increment() {
+        console.log(counter);
+        counter++;
+    }
+    function gameOver() {
+        clearInterval(interval);
+        clearInterval(intervalTime);
+        $("#previous").hide();
+        $("#submit").hide();
+        $(".slide").hide();
+        $('.active-slide').remove();
+        showResults(myQuestions, quizContainer, resultsContainer)
+        
+    }
+
     $(".startBtn").click(function() {
         $("p").hide();
         $(".startBtn").hide();
         showSlide(0);
+        startTimer();
         
         // Countdown clock
-        //     var number = 60;
-        //     var intervalId;
-        //     function run() {
-        //         clearInterval(intervalId);
-        //         intervalId = setInterval(decrement, 1000);
-        //     }
-        //     function decrement() {
-        //         number--;
-        //     if (number === 0) {
-        //         stop();
-        //         alert("Time's Up!")
-        //         }
-        //     }
-        //     function stop() {
-        //         clearInterval(intervalId);
-        //     }
-        //     run();
+            
+            // var intervalId;
+            // function run() {
+            //     clearInterval(intervalId);
+            //     intervalId = setInterval(decrement, 1000);
+            // }
+            // function decrement() {
+            //     number--;
+            // if (number === 0) {
+            //     stop();
+            //     alert("Time's Up!")
+            //     }
+            // }
+            // function stop() {
+            //     clearInterval(intervalId);
+            // }
+            // run();
+        
         
     });
-   
+    // var timer = 6000;
+    // setTimeout(showResults(myQuestions, quizContainer, resultsContainer), timer);
+   // settimeout - run showResults after 60 sec
     // when user clicks submit, show results
     submitButton.onclick = function(){
-        $("#previous").hide();
-        $("#submit").hide();
-    showResults(myQuestions, quizContainer, resultsContainer);
+       
+        gameOver();
+       
+        
+      
     }
     
+    // Spotify API for music at end
 
    
 
