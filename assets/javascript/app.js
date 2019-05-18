@@ -240,7 +240,9 @@ var myQuestions = [
    
     // when user clicks submit, show results
     submitButton.onclick = function(){
-    showResults(questions, quizContainer, resultsContainer);
+        $("#previous").hide();
+        $("#submit").hide();
+    showResults(myQuestions, quizContainer, resultsContainer);
     }
     
 
