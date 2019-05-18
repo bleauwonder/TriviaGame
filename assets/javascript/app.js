@@ -1,3 +1,5 @@
+// $(document).ready(function() {
+    // array of questions
 var myQuestions = [
 	{
 		question: "Who launched Sun Records in February of 1952?",
@@ -89,7 +91,6 @@ var myQuestions = [
 		},
 		correctAnswer: 'd'
     },
-   
     {
 		question: "Where is Sun Records now located?",
 		answers: {
@@ -101,14 +102,15 @@ var myQuestions = [
 		correctAnswer: 'c'
 	}
 ];
-// $(document).ready(function() {
-
+    $('#previous').hide();
+    $('#next').hide();
+    $('#submit').hide();
+    
 // Quiz
-
     function buildQuiz() {
         // blank array to push user answers into, and a correct answers array
         var output = [];
-        // for each question, we'll want to store the list of answer choices
+        // for each question, store the list of answer choices
         myQuestions.forEach((currentQuestion, questionNumber) => {
             var answers = [];
         // for each available answer to this question
@@ -127,12 +129,10 @@ var myQuestions = [
                     </div>`
                 );
         });
-        
-        quizContainer.innerHTML = output.join("");
-           
+        quizContainer.innerHTML = output.join("");  
     }
       
-    function showResults(){
+    function showResults() {
         // gather answer containers from our quiz
             var answerContainers = quizContainer.querySelectorAll('.answers');
             // keep track of user's answers
@@ -156,8 +156,7 @@ var myQuestions = [
                     // color the answers red
                     answerContainers[questionNumber].style.color = 'red';
                     }
-                });
-                
+                }); 
         // show number of correct answers out of total
             resultsContainer.innerHTML = numCorrect + ' out of ' + questions.length;
     }
@@ -190,27 +189,32 @@ var myQuestions = [
         showSlide(currentSlide - 1);
     }
 
-    const quizContainer = document.getElementById("quiz");
-    const resultsContainer = document.getElementById("results");
+    var quizContainer = document.getElementById("quiz");
+    var resultsContainer = document.getElementById("results");
     submitButton = document.getElementById("submit");
 
     buildQuiz();
 
-    var previousButton = $('#previous').get(0);
-    $('#previous').get[0];
-    var nextButton = $('#next').get(0);
-    $('#next').get[0];
+    // var previousButton = $('#previous').get(0);
+    // $('#previous').get[0];
+    // var nextButton = $('#next').get(0);
+    // $('#next').get[0];
+    // var slides = document.querySelectorAll(".slide");
+    // // var slides = $('.slide');
+    // var currentSlide = 0;
+
+    var previousButton = document.getElementById("previous");
+    var nextButton = document.getElementById("next");
     var slides = document.querySelectorAll(".slide");
-    // var slides = $('.slide');
-    var currentSlide = 0;
-
-
-    submitButton.addEventListener("click", showResults);
-    previousButton.addEventListener("click", showPreviousSlide);
+    let currentSlide = 0;
+    
     nextButton.addEventListener("click", showNextSlide);
+    previousButton.addEventListener("click", showPreviousSlide);
+    submitButton.addEventListener("click", showResults);
 
     $(".startBtn").click(function() {
-        
+        $("p").hide();
+        $(".startBtn").hide();
         showSlide(0);
         
         // Countdown clock
@@ -222,7 +226,6 @@ var myQuestions = [
         //     }
         //     function decrement() {
         //         number--;
-        //         $("#show-number").html("<h2>" + number + "</h2>");
         //     if (number === 0) {
         //         stop();
         //         alert("Time's Up!")
@@ -232,12 +235,9 @@ var myQuestions = [
         //         clearInterval(intervalId);
         //     }
         //     run();
-        // });
+        
     });
    
-
-
-
     // when user clicks submit, show results
     submitButton.onclick = function(){
     showResults(questions, quizContainer, resultsContainer);
