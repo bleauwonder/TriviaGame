@@ -132,13 +132,12 @@ var myQuestions = [
         });
         quizContainer.innerHTML = output.join("");  
     }
-      
+      var questionNumber = 0;
     function showResults() {
         // gather answer containers from our quiz
             var allAnswers = quizContainer.querySelectorAll('.answers');
             // keep track of user's answers
             var numCorrect = 0;
-            
             // for each question...
             myQuestions.forEach((currentQuestion, questionNumber) => {
                 // find selected answer
@@ -239,8 +238,8 @@ var myQuestions = [
         startTimer();
     });
    
-    // when user clicks submit, show results
-    submitButton.onclick = function(){
+    // when user clicks submit, show results, show Sun Records gif, play Great Balls of Fire
+    submitButton.onclick = function() {
         gameOver(); 
         x = new Audio("GreatBallsOfFire.mp3")
         x.play();
@@ -252,8 +251,6 @@ var myQuestions = [
             console.log(response);
         });
     }
-    
-    // Spotify API for music at end
 
    
 
