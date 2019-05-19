@@ -1,3 +1,12 @@
+body {
+    background-image: url("../images/Sun_logo.png");
+    background-size: auto;
+    margin: auto;
+    font-size: 20px;
+	font-family: sans-serif;
+	color: #3b3306;
+}
+
 .container {
     width: 880px;
     padding: 15px;
@@ -6,6 +15,7 @@
     overflow: auto;
     box-shadow: 15px 15px 5px #3b3306;
 }
+
 h1 {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
@@ -16,6 +26,7 @@ h1 {
     text-shadow: 2px 2px #70490f;
     vertical-align: 50%;
 }
+
 h3 {
     font-family: Arial, Helvetica, sans-serif;
     border-bottom: 3px solid #dddddd;
@@ -30,40 +41,6 @@ h3 {
 
 p {
     text-align: center;
-}
-body {
-    background-image: url("../images/Sun_logo.png");
-    background-size: auto;
-    margin: auto;
-    font-size: 20px;
-	font-family: sans-serif;
-	color: #3b3306;
-}
-
-.question {
-	font-weight: 600;
-}
-.answers {
-    margin-bottom: 20px;
-}
-
-#submit {
-	font-family: sans-serif;
-	font-size: 20px;
-	background-color: #e6c409;
-	color: #fff;
-	border: 0px;
-	border-radius: 3px;
-	padding: 20px;
-	cursor: pointer;
-    text-align: center;
-    display: inline-block;
-    position: relative;
-    left: 350px;
-}
-
-#submit:hover{
-	background-color: rgb(241, 224, 124);
 }
 
 .startBtn {
@@ -85,6 +62,26 @@ body {
 	background-color: rgb(241, 224, 124);
 }
 
+#submit {
+	font-family: sans-serif;
+	font-size: 20px;
+	background-color: #e6c409;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    left: 350px;
+}
+
+#submit:hover{
+	background-color: rgb(241, 224, 124);
+}
+
+/* Slides */
 .slide {
     position: absolute;
     left: 0px;
@@ -109,20 +106,25 @@ body {
     text-align: center;
 }
 
-.question{
+.question {
     font-size: 30px;
     margin-bottom: 20px;
+    font-weight: 600;
   }
+
   .answers {
     margin-bottom: 20px;
     text-align: left;
+    margin-bottom: 20px;
     display: inline-block;
   }
+
   .answers label{
     display: block;
     margin-bottom: 10px;
   }
-  button{
+/* Next and Previous Question buttons */
+  button {
     font-family: Arial, Helvetica, sans-serif;
       font-size: 15px;
       background-color: #3b3306;
@@ -134,6 +136,7 @@ body {
       margin-bottom: 20px;
       margin-top: 50px;
   }
+
   button:hover{
       background-color: #e6c409;
   }

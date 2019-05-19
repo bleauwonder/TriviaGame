@@ -135,33 +135,33 @@ var myQuestions = [
       
     function showResults() {
         // gather answer containers from our quiz
-        console.log("hi");
-            var answerContainers = quizContainer.querySelectorAll('.answers');
+            var allAnswers = quizContainer.querySelectorAll('.answers');
             // keep track of user's answers
             var numCorrect = 0;
+            
             // for each question...
             myQuestions.forEach((currentQuestion, questionNumber) => {
                 // find selected answer
-                var answerContainer = answerContainers[questionNumber];
+                var answerContainer = allAnswers[questionNumber];
                 var selector = `input[name=question${questionNumber}]:checked`;
                 var userAnswer = (answerContainer.querySelector(selector) || {}).value;
-// look over querySelector, no answer?
+
                 // if answer is correct
                 if (userAnswer === currentQuestion.correctAnswer) {
                     // add to the number of correct answers
                     numCorrect++;
                     // color the answers green
-                    answerContainers[questionNumber].style.color = 'lightgreen';
+                    allAnswers[questionNumber].style.color = 'lightgreen';
                     }
                 // if answer is wrong or blank
                 else {
                     // color the answers red
-                    answerContainers[questionNumber].style.color = 'red';
+                    allAnswers[questionNumber].style.color = 'red';
                     }
                 }); 
         // show number of correct answers out of total
-            resultsContainer.innerHTML = 'Wow...you got ' + numCorrect + ' out of ' + myQuestions.length + '!';
-            $('#counter').html('You finished in ' + counter + " seconds.");
+            resultsContainer.innerHTML = 'Wow...you got ' + numCorrect + ' out of ' + myQuestions.length + ' answers correct!';
+            $('#counter').html('in ' + counter + " seconds!");
     }
 
     function showSlide(n) {
@@ -198,14 +198,6 @@ var myQuestions = [
 
     buildQuiz();
 
-    // var previousButton = $('#previous').get(0);
-    // $('#previous').get[0];
-    // var nextButton = $('#next').get(0);
-    // $('#next').get[0];
-    // var slides = document.querySelectorAll(".slide");
-    // // var slides = $('.slide');
-    // var currentSlide = 0;
-
     var previousButton = document.getElementById("previous");
     var nextButton = document.getElementById("next");
     var slides = document.querySelectorAll(".slide");
@@ -229,6 +221,7 @@ var myQuestions = [
         console.log(counter);
         counter++;
     }
+
     function gameOver() {
         clearInterval(interval);
         clearInterval(intervalTime);
@@ -236,8 +229,7 @@ var myQuestions = [
         $("#submit").hide();
         $(".slide").hide();
         $('.active-slide').remove();
-        showResults(myQuestions, quizContainer, resultsContainer)
-        
+        showResults(myQuestions, quizContainer, resultsContainer)  
     }
 
     $(".startBtn").click(function() {
@@ -245,7 +237,41 @@ var myQuestions = [
         $(".startBtn").hide();
         showSlide(0);
         startTimer();
-        
+    });
+   
+    // when user clicks submit, show results
+    submitButton.onclick = function(){
+        gameOver(); 
+        x = new Audio("GreatBallsOfFire.mp3")
+        x.play();
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=sun+records&api_key=jsLMS8xwk7FnnuMsoZPlzQnjmRLUTHKl";
+            $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+            console.log(response);
+        });
+    }
+    
+    // Spotify API for music at end
+
+   
+
+    
+
+
+// });
+
+
+    // var previousButton = $('#previous').get(0);
+    // $('#previous').get[0];
+    // var nextButton = $('#next').get(0);
+    // $('#next').get[0];
+    // var slides = document.querySelectorAll(".slide");
+    // // var slides = $('.slide');
+    // var currentSlide = 0;
+
+     
         // Countdown clock
             
             // var intervalId;
@@ -264,26 +290,7 @@ var myQuestions = [
             //     clearInterval(intervalId);
             // }
             // run();
-        
-        
-    });
-    // var timer = 6000;
+
+             // var timer = 6000;
     // setTimeout(showResults(myQuestions, quizContainer, resultsContainer), timer);
    // settimeout - run showResults after 60 sec
-    // when user clicks submit, show results
-    submitButton.onclick = function(){
-       
-        gameOver();
-       
-        
-      
-    }
-    
-    // Spotify API for music at end
-
-   
-
-    
-
-
-// });
