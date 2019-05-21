@@ -114,44 +114,52 @@ var myQuestions = [
         // for each question, store the list of answer choices
         myQuestions.forEach((currentQuestion, questionNumber) => {
             var answers = [];
-        // for each available answer to this question
-        for(letter in currentQuestion.answers) {
-            // add an html radio button
-            answers.push(`<label>
-            <input type="radio" name="question${questionNumber}" value="${letter}">
-             ${letter} :
-             ${currentQuestion.answers[letter]}
-            </label>`
-            );
-        }
-        output.push(`<div class="slide">
-                    <div class="question"> ${currentQuestion.question} </div>
-                    <div class="answers"> ${answers.join("")} </div>
-                    </div>`
+            // for each available answer to this question
+            for(letter in currentQuestion.answers) {
+                // add an html radio button
+                answers.push(`<label>
+                <input type="radio" name="question${questionNumber}" value="${letter}">
+                ${letter} :
+                ${currentQuestion.answers[letter]}
+                </label>`
                 );
+            }
+            output.push(`<div class="slide">
+                        <div class="question"> ${currentQuestion.question} </div>
+                        <div class="answers"> ${answers.join("")} </div>
+                        </div>`
+                    );
         });
+
         quizContainer.innerHTML = output.join("");  
+        console.log("TCL: buildQuiz -> output", output)
     }
-      var questionNumber = 0;
+    
     function showResults() {
         // gather answer containers from our quiz
             var allAnswers = quizContainer.querySelectorAll('.answers');
+			console.log("TCL: showResults -> allAnswers", allAnswers)
             // keep track of user's answers
             var numCorrect = 0;
+            var unanswered = 0;
             // for each question...
             myQuestions.forEach((currentQuestion, questionNumber) => {
                 // find selected answer
                 var answerContainer = allAnswers[questionNumber];
                 var selector = `input[name=question${questionNumber}]:checked`;
-                var userAnswer = (answerContainer.querySelector(selector) || {}).value;
+                var isChecked = answerContainer.querySelector(selector);
+                var userAnswer = isChecked ? isChecked.value : '';
 
                 // if answer is correct
                 if (userAnswer === currentQuestion.correctAnswer) {
                     // add to the number of correct answers
                     numCorrect++;
                     // color the answers green
-                    allAnswers[questionNumber].style.color = 'lightgreen';
+                    // allAnswers[questionNumber].style.color = 'lightgreen';
                     }
+                else if (userAnswer === '') {
+                    unanswered++;
+                }
                 // if answer is wrong or blank
                 else {
                     // color the answers red
@@ -212,7 +220,7 @@ var myQuestions = [
 
     function startTimer() {
          clearInterval(interval);
-        interval= setInterval(gameOver, 6000);
+        interval= setInterval(gameOver, 5000);
         clearInterval(intervalTime);
         intervalTime = setInterval(increment, 1000);
     }
@@ -227,7 +235,7 @@ var myQuestions = [
         $("#previous").hide();
         $("#submit").hide();
         $(".slide").hide();
-        $('.active-slide').remove();
+        $('.active-slide').removeClass('.active-slide');
         showResults(myQuestions, quizContainer, resultsContainer)  
     }
 
