@@ -167,7 +167,7 @@ var myQuestions = [
                     }
                 }); 
         // show number of correct answers out of total
-            resultsContainer.innerHTML = 'Wow...you got ' + numCorrect + ' out of ' + myQuestions.length + ' answers correct!';
+            resultsContainer.innerHTML = 'Wow...you walked the line and got ' + numCorrect + ' out of ' + myQuestions.length + ' answers correct';
             $('#counter').html('in ' + counter + " seconds!");
     }
 
