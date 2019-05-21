@@ -101,7 +101,7 @@ p {
 
 .quiz-container {
     position: relative;
-    height: 200px;
+    height: 240px;
     margin-top: 40px;
     text-align: center;
 }
@@ -115,7 +115,6 @@ p {
   .answers {
     margin-bottom: 20px;
     text-align: left;
-    margin-bottom: 20px;
     display: inline-block;
   }
 
@@ -123,6 +122,7 @@ p {
     display: block;
     margin-bottom: 10px;
   }
+  
 /* Next and Previous Question buttons */
   button {
     font-family: Arial, Helvetica, sans-serif;

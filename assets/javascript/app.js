@@ -167,7 +167,7 @@ var myQuestions = [
                     }
                 }); 
         // show number of correct answers out of total
-            resultsContainer.innerHTML = 'Wow...you walked the line and got ' + numCorrect + ' out of ' + myQuestions.length + ' answers correct';
+            resultsContainer.innerHTML = 'Wow...You "walked the line" and got ' + numCorrect + ' out of ' + myQuestions.length + ' answers correct';
             $('#counter').html('in ' + counter + " seconds!");
     }
 
@@ -249,53 +249,25 @@ var myQuestions = [
     // when user clicks submit, show results, show Sun Records gif, play Great Balls of Fire
     submitButton.onclick = function() {
         gameOver(); 
-        x = new Audio("GreatBallsOfFire.mp3")
+        x = new Audio("assets/images/GreatBallsOfFire.mp3")
         x.play();
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=sun+records&api_key=jsLMS8xwk7FnnuMsoZPlzQnjmRLUTHKl";
-            $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function(response) {
-            console.log(response);
-        });
     }
+        
+
+        // var queryURL = "https://api.giphy.com/v1/gifs/search?q=sun+records&api_key=jsLMS8xwk7FnnuMsoZPlzQnjmRLUTHKl&limit=1";
+        //     $.ajax({
+        //     url: queryURL,
+        //     method: "GET"
+        // }).then(function(response) {
+        //     $("#results").text(JSON.stringify(response));
+        // });
+    
 
    
 
     
 
 
-// });
 
 
-    // var previousButton = $('#previous').get(0);
-    // $('#previous').get[0];
-    // var nextButton = $('#next').get(0);
-    // $('#next').get[0];
-    // var slides = document.querySelectorAll(".slide");
-    // // var slides = $('.slide');
-    // var currentSlide = 0;
 
-     
-        // Countdown clock
-            
-            // var intervalId;
-            // function run() {
-            //     clearInterval(intervalId);
-            //     intervalId = setInterval(decrement, 1000);
-            // }
-            // function decrement() {
-            //     number--;
-            // if (number === 0) {
-            //     stop();
-            //     alert("Time's Up!")
-            //     }
-            // }
-            // function stop() {
-            //     clearInterval(intervalId);
-            // }
-            // run();
-
-             // var timer = 6000;
-    // setTimeout(showResults(myQuestions, quizContainer, resultsContainer), timer);
-   // settimeout - run showResults after 60 sec
