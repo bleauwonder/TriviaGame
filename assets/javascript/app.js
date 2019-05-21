@@ -220,7 +220,7 @@ var myQuestions = [
 
     function startTimer() {
          clearInterval(interval);
-        interval= setInterval(gameOver, 5000);
+        interval= setInterval(gameOver, 60000);
         clearInterval(intervalTime);
         intervalTime = setInterval(increment, 1000);
     }
