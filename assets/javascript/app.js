@@ -253,7 +253,7 @@ var myQuestions = [
         x.play();
     }
         
-
+    // API for a Sun Records Giphy. Did not quite get working yet
         // var queryURL = "https://api.giphy.com/v1/gifs/search?q=sun+records&api_key=jsLMS8xwk7FnnuMsoZPlzQnjmRLUTHKl&limit=1";
         //     $.ajax({
         //     url: queryURL,

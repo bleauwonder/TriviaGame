@@ -141,4 +141,20 @@ p {
       background-color: #e6c409;
   }
 
-  
+    @media only screen and (max-width: 768px) {
+        .container {
+            max-width: 728px;
+        }
+        .auth-image {
+            max-width: 300px;
+        }
+}
+
+    @media only screen and (max-width: 640px) {
+        .container {
+            max-width: 620px;
+        }
+        .auth-image {
+            max-width: 200px;
+        }
+}
